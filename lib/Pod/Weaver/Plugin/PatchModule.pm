@@ -122,7 +122,7 @@ currently does the following:
 
 =item * Mention some modules in SEE ALSO section
 
-e.g. L<Module::Patch>> (the convention/standard), the target module.
+e.g. L<Module::Patch> (the base module), the target module.
 
 =back
 
