@@ -8,6 +8,8 @@ use Moose;
 with 'Pod::Weaver::Role::AddTextToSection';
 with 'Pod::Weaver::Role::Section';
 
+use Data::Sah::Normalize qw(normalize_schema);
+
 sub _process_module {
     no strict 'refs';
 
@@ -37,7 +39,7 @@ sub _process_module {
         my @pod;
         push @pod, "=over\n\n";
         for my $p (@$patches) {
-            push @pod, "=item * $p->{action} $p->{sub_name}\n\n";
+            push @pod, "=item * $p->{action} C<$p->{sub_name}>\n\n";
         }
         push @pod, "=back\n\n";
         $self->add_text_to_section(
@@ -53,7 +55,9 @@ sub _process_module {
         push @pod, "=over\n\n";
         for my $cname (sort keys %$config) {
             my $c = $config->{$cname};
-            push @pod, "=item * $cname\n\n";
+            my $sch = normalize_schema($c->{schema});
+
+            push @pod, "=item * $cname => $sch->[0]\n\n";
             push @pod, "$c->{summary}.\n\n" if $c->{summary};
             # XXX add description (markdown to pod)
         }
