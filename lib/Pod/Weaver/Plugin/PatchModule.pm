@@ -116,11 +116,11 @@ currently does the following:
 
 =over
 
-=item * Create "PATCH CONTENTS" from information given by C<patch_data>
+=item * Create "PATCH CONTENTS" section from information given by C<patch_data>
 
-=item * Create "PATCH CONFIGURATION" from list of configuration given by C<patch_data>
+=item * Create "PATCH CONFIGURATION" section from list of configuration given by C<patch_data>
 
-=item * Mention some modules in See Also section
+=item * Mention some modules in SEE ALSO section
 
 e.g. L<Module::Patch>> (the convention/standard), the target module.
 
