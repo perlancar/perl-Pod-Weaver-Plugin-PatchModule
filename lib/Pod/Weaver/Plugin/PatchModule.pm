@@ -111,7 +111,7 @@ In F<weaver.ini>:
 
 This plugin is used when building patch modules (modules that use
 L<Module::Patch> to bundle a set of monkey patches, for example
-L<File::Which::Patch::Hide> or L<perl-LWP-UserAgent-Patch-FilterMirror>). It
+L<File::Which::Patch::Hide> or L<LWP::UserAgent::Patch::FilterMirror>). It
 currently does the following:
 
 =over
