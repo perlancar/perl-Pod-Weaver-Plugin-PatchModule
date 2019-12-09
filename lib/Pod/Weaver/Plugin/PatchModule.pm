@@ -1,6 +1,8 @@
 package Pod::Weaver::Plugin::PatchModule;
 
+# AUTHORITY
 # DATE
+# DIST
 # VERSION
 
 use 5.010001;
@@ -59,7 +61,14 @@ sub _process_module {
 
             push @pod, "=item * $cname => $sch->[0]\n\n";
             push @pod, "$c->{summary}.\n\n" if $c->{summary};
-            # XXX add description (markdown to pod)
+            if ($c->{description}) {
+                require Markdown::To::POD;
+                my $pod = Markdown::To::POD::markdown_to_pod($c->{description});
+                # make sure we add a couple of blank lines in the end
+                $pod =~ s/\s+\z//s;
+                $pod .= "\n\n\n";
+                push @pod, $pod;
+            }
         }
         push @pod, "=back\n\n";
         $self->add_text_to_section(
